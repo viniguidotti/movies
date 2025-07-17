@@ -37,10 +37,8 @@ describe('MovieDetailsComponent', () => {
 
     router = TestBed.inject(Router);
     
-    // Espia navigate do router real
     jest.spyOn(router, 'navigate').mockImplementation(() => Promise.resolve(true));
 
-    // Mock localStorage
     jest.spyOn(window.localStorage['__proto__'], 'getItem').mockImplementation(() => null);
     jest.spyOn(window.localStorage['__proto__'], 'removeItem').mockImplementation(() => { });
   });
