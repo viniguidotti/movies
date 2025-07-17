@@ -1,0 +1,80 @@
+.movie-details-container {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+
+  .overlay {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+  }
+
+  .movie-details-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .movie-overview {
+    margin-top: 1rem;
+    font-style: italic;
+  }
+
+  .movie-credits {
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 600px;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 12px;
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+
+  .return-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+
+    .btn-primary {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      font-weight: bold;
+    }
+  }
+}

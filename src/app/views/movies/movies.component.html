@@ -1,0 +1,35 @@
+<div class="movies-view">
+    <div class="search-movies">
+        <mat-form-field appearance="fill" class="search-field">
+            <mat-label>Search Movie</mat-label>
+            <mat-icon matPrefix>search</mat-icon>
+            <input type="text" matInput [formControl]="searchControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div class="movies-container">
+        <mat-card *ngFor="let movie of movies" class="movies-card" appearance="outlined">
+            <mat-card-header>
+                <mat-card-title class="movie-title">{{ movie.title }}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
+                alt="{{ movie.title }}">
+            <mat-card-content>
+                <p class="movie-release-date">
+                    Release date: {{ movie.release_date | date: 'longDate' }}
+                </p>
+                <p class="movie-overview">
+                    {{ movie.overview }}
+                </p>
+            </mat-card-content>
+            <mat-card-actions class="movie-actions">
+                <button mat-button (click)="navigateToDetails(movie)">See Details</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

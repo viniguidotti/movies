@@ -1,0 +1,29 @@
+<div class="movie-details-container" [ngStyle]="{ 'background-image': 'url(' + imageUrl + ')' }">
+  <div class="overlay"></div>
+
+  <div class="return-button">
+    <button mat-button routerLink="/" class="btn btn-primary">Back to Movies</button>
+  </div>
+
+  <div class="movie-details-content">
+    <img *ngIf="movie?.poster_path" class="movie-poster"
+         [src]="'https://image.tmdb.org/t/p/w500' + movie?.poster_path"
+         [alt]="movie?.title" />
+
+    <div class="movie-info">
+      <h1>{{ movie?.title }}</h1>
+      <p>{{ movie?.release_date | date: 'longDate' }}</p>
+      <p>Rating: {{ movie?.vote_average }}/10</p>
+      <p class="movie-overview">{{ movie?.overview }}</p>
+    </div>
+  </div>
+
+  <div class="movie-credits">
+    <h3>Credits</h3>
+    <ul>
+      <li *ngFor="let castMember of movieDetails?.cast">
+        {{ castMember.name }} as {{ castMember.character }}
+      </li>
+    </ul>
+  </div>
+</div>
