@@ -5,6 +5,7 @@ import { Credits } from './credits.model';
 import { Result } from '../../views/movies/movies.model';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { WikipediaService } from '../../services/wikipedia.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -13,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './movie-details.component.scss'
 })
 export class MovieDetailsComponent implements OnInit {
-  constructor(private router: Router, private service: MoviesDetailsService) { }
+  constructor(private router: Router, private service: MoviesDetailsService, private wikipediaService: WikipediaService) { }
 
   movie: Result | null = null;
   movieDetails: Credits | null = null;
@@ -35,6 +36,16 @@ export class MovieDetailsComponent implements OnInit {
     }
   }
 
+  onOpenWikipedia(): void {
+    if (this.movie?.id) {
+      this.wikipediaService.openWikipedia(String(this.movie.id), this.movie.title).catch(error => {
+        console.error('Error opening Wikipedia:', error);
+      });
+    } else {
+      console.error('IMDB ID not found for the movie');
+    }
+  }
+
   ngOnDestroy(): void {
     localStorage.removeItem('selectedMovie');
     this.movie = null;
@@ -43,7 +54,6 @@ export class MovieDetailsComponent implements OnInit {
 
   getMovieCreditsById(id: string) {
     this.service.getMovieCreditsById(id).subscribe(credits => {
-      console.log('Movie Credits:', credits);
       this.movieDetails = credits;
     });
   }

@@ -15,6 +15,8 @@
       <p>{{ movie?.release_date | date: 'longDate' }}</p>
       <p>Rating: {{ movie?.vote_average }}/10</p>
       <p class="movie-overview">{{ movie?.overview }}</p>
+
+      <button class="wikipedia-button" mat-button (click)="onOpenWikipedia()">Open Wikipedia Movie Site</button>
     </div>
   </div>
 

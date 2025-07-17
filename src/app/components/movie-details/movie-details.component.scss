@@ -77,4 +77,12 @@
       font-weight: bold;
     }
   }
+
+  .wikipedia-link {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 2;
+    color: white;
+  }
 }
