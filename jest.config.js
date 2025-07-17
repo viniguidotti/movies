@@ -9,6 +9,11 @@ module.exports = {
   coverageDirectory: "coverage",
   coverageReporters: ["html", "text", "lcov"],
   preset: 'jest-preset-angular',
+    coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '<rootDir>/src/app/app.config.ts',
+    '<rootDir>/src/app/app.routes.ts'
+  ],
   setupFilesAfterEnv: ['<rootDir>/setup-jest.js'],
   testEnvironment: 'jsdom',
   transform: {
