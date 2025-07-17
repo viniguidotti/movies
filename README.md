@@ -1,59 +1,148 @@
-# Movies
+# 🎞️ Movies Electron App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+**Movies** is a desktop app built with **Electron + Angular** that lists movies, shows details (credits, overview, etc.), and allows you to navigate to the movie's Wikipedia page with one click.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🛠️ Prerequisites
 
-```bash
-ng serve
-```
+1. Have the **API backend** running on port `3000` (e.g., [movie-api](https://github.com/viniguidotti/movie-api))  
+2. Node.js (v16+)  
+3. NPM or Yarn  
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## ⚙️ Getting Started
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 1. Clone this repository
 
 ```bash
-ng generate --help
+git clone https://github.com/viniguidotti/movies.git
+cd movies
 ```
 
-## Building
-
-To build the project run:
+### 2. Install dependencies
 
 ```bash
-ng build
+npm install
+# or
+yarn install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 🧩 API Setup
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Make sure your API (movie-api) is running at:
+
+```
+http://localhost:3000/movies
+```
+
+It should provide endpoints like:
+
+- `GET /movies` – list of movies  
+- `GET /movies/:movieId/credits` – movie credits
+
+If needed, update the API URL in Angular:  
+`src/app/movies.service.ts`.
+
+---
+
+## 🚀 Running the App
+
+### Web Mode (optional)
+
+You can run it as a regular Angular app:
 
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
+Then access: `http://localhost:4200`
 
-For end-to-end (e2e) testing, run:
+### With Electron (recommended – desktop mode)
+
+1. Build Angular and start Electron:
 
 ```bash
-ng e2e
+npm run electron:build
+npm run electron:start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+or use a combined script if available:
 
-## Additional Resources
+```bash
+npm run electron
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## 🎯 Features
+
+- 📦 Movie listing (integrated with `Response.results`)
+- 🔍 Real-time search field
+- 🎬 Detail page with credits
+- 🌐 Button to open Wikipedia via `shell.openExternal`
+- 💾 Selected movie saved via `localStorage`
+- ✅ Unit testing with **Jest**
+
+---
+
+## 📦 Project Structure
+
+```
+/movie-api           ← Required API (clone separately)
+/movies              ← Electron + Angular App
+├─ src/
+│   ├─ app/
+│   │   ├─ movies/         ← Movie list component
+│   │   ├─ movie-details/  ← Movie details screen
+│   │   └─ services/       ← WikipediaService, etc.
+│   └─ assets/
+├─ angular.json
+├─ main.js               ← Electron main process
+├─ preload.js            ← Secure window.electronAPI
+├─ package.json
+└─ jest.config.js        ← Jest test config
+```
+
+---
+
+## ✅ Testing
+
+To run Jest tests and generate coverage reports:
+
+```bash
+npm test              # run all tests
+npm run test:coverage # generate report in coverage/
+```
+
+Open `coverage/lcov-report/index.html` in your browser for details.
+
+---
+
+## 🧑‍💻 Tips and Improvements
+
+- Add pagination to movie list
+- Handle notifications and error states  
+- Update URLs for production (live API, Electron build)
+- Add theming/styling with Material or custom CSS
+
+---
+
+## 🤝 Contributions
+
+Contributions are welcome! Fork, improve, and send a PR.  
+Keep your `movie-api` running in parallel for full functionality.
+
+---
+
+## 👨‍🏫 Credits
+
+Developed by Vinícius Guidotti and open-source community.  
+**Backend/API**: [movie-api](https://github.com/viniguidotti/movie-api)
+
+---
+
+### Welcome aboard! 🛥️
