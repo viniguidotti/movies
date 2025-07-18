@@ -39,7 +39,7 @@ export class WikipediaService {
                 window.electronAPI.openExternal(fallbackUrl);
             }
         } catch (error) {
-            console.error('Erro ao buscar na Wikidata:', error);
+            console.error('Error on wikipedia search:', error);
             const fallbackUrl = `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(movieTitle)}`;
             // @ts-ignore
             window.electronAPI.openExternal(fallbackUrl);
